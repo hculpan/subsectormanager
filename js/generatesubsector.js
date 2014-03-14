@@ -6,8 +6,8 @@ var GenerateSubsector = (function () {
     "use strict";
 
 // private members
-    var width = 60;
-    var height = 52;
+    var width = 80;
+    var height = width * .867;
     var quarterSize = width * 0.25
     var halfSize = height * 0.5
 
@@ -24,7 +24,7 @@ var GenerateSubsector = (function () {
             yOffset = halfSize
         }
 
-        draw.polygon([
+        var polygon = draw.polygon([
             [leftX + quarterSize - xOffset, topY + yOffset],
             [rightX - quarterSize - xOffset, topY + yOffset],
             [rightX - xOffset, topY + halfSize + yOffset],
@@ -41,6 +41,9 @@ var GenerateSubsector = (function () {
 
 // public functions
     GenerateSubsector.prototype.generateNew = function (rootId) {
+//        SVG('subsector-map').clear()
+        $('#subsector-map').empty()
+
         var draw = SVG('subsector-map').size(width * 8.5, height * 10.5)
         for (var x = 0; x < 8; x++) {
             for (var y = 0; y < 10; y++) {
